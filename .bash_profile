@@ -56,11 +56,11 @@ eval "$(direnv hook bash)"
 # Locale
 export LC_ALL="en_US.UTF-8"
 
-# History 
+# History
 export HISTSIZE=1000
 export HISTFILESIZE=2000
 
-# Move native PATHs to the back 
+# Move native PATHs to the back
 #  (Workaroung for VS-Code Terminal
 #   to avoid it putting '/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
 #   in front thus breaking Brew setup)
