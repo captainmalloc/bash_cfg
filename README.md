@@ -1,4 +1,4 @@
-# bash_cfg
+# shell_cfg
 Custom configuration for Bash
 
 # zshrc on MacOS
