@@ -72,6 +72,9 @@ do
     fi
 done
 
+# Cargo
+addtool "${HOME}/.cargo"
+
 # Direnv
 eval "$(direnv hook zsh)"
 
