@@ -20,6 +20,19 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+# Move native PATHs to the back
+#  (Workaroung for VS-Code Terminal
+#   to avoid it putting '/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+#   in front thus breaking Brew setup)
+while read bin_dir; do
+	if [[ ":${PATH}:" == *":${bin_dir}:"* ]]; then
+		PATH=${PATH//":${bin_dir}:"/":"} # delete any instances in the middle
+		PATH=${PATH/#"${bin_dir}:"/} # delete any instance at the beginning
+		PATH=${PATH/%":${bin_dir}"/} # delete any instance in the at the end
+		export PATH=${PATH}:${bin_dir}
+	fi
+done < /etc/paths
+
 # Add a tool in PATH and MANPATH
 addtool() {
 	curr_dir="$1"

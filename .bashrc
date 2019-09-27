@@ -1,3 +1,16 @@
+# Move native PATHs to the back
+#  (Workaroung for VS-Code Terminal
+#   to avoid it putting '/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+#   in front thus breaking Brew setup)
+while read bin_dir; do
+	if [[ ":${PATH}:" == *":${bin_dir}:"* ]]; then
+		PATH=${PATH//":${bin_dir}:"/":"} # delete any instances in the middle
+		PATH=${PATH/#"${bin_dir}:"/} # delete any instance at the beginning
+		PATH=${PATH/%":${bin_dir}"/} # delete any instance in the at the end
+		export PATH=${PATH}:${bin_dir}
+	fi
+done < /etc/paths
+
 # Add a tool in PATH and MANPATH
 addtool() {
 	curr_dir="$1"
@@ -62,19 +75,6 @@ export LC_ALL="en_US.UTF-8"
 # History
 export HISTSIZE=1000
 export HISTFILESIZE=2000
-
-# Move native PATHs to the back
-#  (Workaroung for VS-Code Terminal
-#   to avoid it putting '/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
-#   in front thus breaking Brew setup)
-while read bin_dir; do
-	if [[ ":${PATH}:" == *":${bin_dir}:"* ]]; then
-		PATH=${PATH//":${bin_dir}:"/":"} # delete any instances in the middle
-		PATH=${PATH/#"${bin_dir}:"/} # delete any instance at the beginning
-		PATH=${PATH/%":${bin_dir}"/} # delete any instance in the at the end
-		export PATH=${PATH}:${bin_dir}
-	fi
-done < /etc/paths
 
 # If this is a non interactive shell
 if [ -z "$PS1" ]; then
