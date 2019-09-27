@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/adrsco01/.oh-my-zsh"
+export ZSH="/Users/${USER}/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS=true
