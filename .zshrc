@@ -41,19 +41,19 @@ addtool() {
 		return 1
 	fi
 
-	bin_dir="${curr_dir}/bin"
+	bin_dir="${curr_dir}/gnubin"
 	if [ ! -d ${bin_dir} ]; then
-		# Try with gnubin
-		bin_dir="${curr_dir}/gnubin"
+		# Try with bin
+		bin_dir="${curr_dir}/bin"
 	fi
 	if [ -d ${bin_dir} ] && [[ ":${PATH}:" != *":${bin_dir}:"* ]]; then
 		export PATH=${bin_dir}${PATH+:${PATH}}
 	fi
 
-	man_dir="${curr_dir}/man"
+	man_dir="${curr_dir}/gnuman"
 	if [ ! -d ${man_dir} ]; then
-		# Try with gnuman
-		man_dir="${curr_dir}/gnuman"
+		# Try with man
+		man_dir="${curr_dir}/man"
 	fi
 	if [ -d ${man_dir} ] && [[ ":${MANPATH}:" != *":${man_dir}:"* ]]; then
 		export MANPATH=${man_dir}${MANPATH+:${MANPATH}}
@@ -78,11 +78,11 @@ unset __conda_setup
 # Add brew installed packages if needed
 for dir in `find /usr/local/opt -type l`
 do
-    # Keep only those with libexec
-    curr_dir=${dir}/libexec
-    if [ -d ${curr_dir} ]; then
-	addtool "${curr_dir}"
-    fi
+	# Keep only those with libexec
+	curr_dir=${dir}/libexec
+	if [ -d ${curr_dir} ]; then
+		addtool "${curr_dir}"
+	fi
 done
 
 # Cargo
@@ -100,7 +100,7 @@ PS1="${customPrompt}"
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
+#	export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+#	export EDITOR='mvim'
 # fi
