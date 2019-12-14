@@ -15,27 +15,31 @@ layout_anaconda() {
   fi;
 }
 
-# Usage: layout local_anaconda <path/to/env> <path/to/environment.yml>
+# Usage: layout local_anaconda <python_version> [<path/to/env> [<path/to/environment.yml>]]
 #
-# Loads a conda virutal environment under "<path/to/env>" .
-# If the environement doesn't exist,
-# create it using the description in "<path/to/environment.yml>"
+# Loads a conda virutal environment using the specified <python_version>
+# under "<path/to/env>" . If the environement doesn't exist,
+# creates it using the description in "<path/to/requirements.txt>"
 #
 layout_local_anaconda() {
+  local python_version="$1"
   local env_path=${PWD}/.condaenv
-  if [ -n "$1" ]; then
-    env_path=$1
+  if [ -n "$2" ]; then
+    env_path=$2
   fi
 
   if [ -d ${env_path} ]; then
     source activate ${env_path}
   else
     local env_parent=$(dirname ${env_path})
-    local env_yml=${env_parent}/environment.yml
+    local env_reqs_txt=${env_parent}/requirements.txt
     if [ -n "$2" ]; then
-      env_yml=$2
+      env_reqs_txt=$3
     fi
-    conda env create -p ${env_path} -f ${env_yml}
+    conda create -y -p ${env_path} python=${python_version}
     source activate ${env_path}
+    if [ -f ${env_reqs_txt} ]; then
+      pip install -r ${env_reqs_txt}
+    fi
   fi
 }
