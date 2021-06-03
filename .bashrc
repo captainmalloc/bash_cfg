@@ -38,6 +38,19 @@ addtool() {
 	fi
 }
 
+# Add brew installed packages if needed
+for dir in `find /usr/local/opt -type l`
+do
+    # Keep only those with libexec
+    curr_dir=${dir}/libexec
+    if [ -d ${curr_dir} ]; then
+	addtool "${curr_dir}"
+    fi
+done
+
+# Cargo
+addtool "${HOME}/.cargo"
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$(${HOME}/miniconda3/bin/conda 'shell.bash' 'hook' 2> /dev/null)"
@@ -52,19 +65,6 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
-# Add brew installed packages if needed
-for dir in `find /usr/local/opt -type l`
-do
-    # Keep only those with libexec
-    curr_dir=${dir}/libexec
-    if [ -d ${curr_dir} ]; then
-	addtool "${curr_dir}"
-    fi
-done
-
-# Cargo
-addtool "${HOME}/.cargo"
 
 # Direnv
 eval "$(direnv hook bash)"
