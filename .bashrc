@@ -82,5 +82,6 @@ if [ -z "$PS1" ]; then
 fi
 
 # Custom Prompt
-customPrompt="$(echo '${CONDA_PROMPT_MODIFIER}')\[\033[31m\]\u\[\033[39m\]@\[\033[34m\]\h\[\033[39m\][\W]$ "
+# conda config --set changeps1 False
+customPrompt="$(echo '${CONDA_PREFIX}')\[\033[31m\]\u\[\033[39m\]@\[\033[34m\]\h\[\033[39m\][\W]$ "
 PS1="${customPrompt}"

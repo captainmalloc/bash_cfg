@@ -3,7 +3,7 @@ export ZSH="/Users/${USER}/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS=true
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -95,7 +95,8 @@ eval "$(direnv hook zsh)"
 export LC_ALL="en_US.UTF-8"
 
 # Custom Prompt
-customPrompt="$(echo '${CONDA_PROMPT_MODIFIER}')%(?:%{%}➜ :%{%}➜ ) %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)"
+# conda config --set changeps1 False
+customPrompt="$(echo '(${CONDA_PREFIX})')%(?:%{%}➜ :%{%}➜ ) %{$fg[cyan]%}%c%{$reset_color%} \$(git_prompt_info)"
 PS1="${customPrompt}"
 
 # Preferred editor for local and remote sessions
