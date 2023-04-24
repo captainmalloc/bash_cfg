@@ -98,10 +98,3 @@ export LC_ALL="en_US.UTF-8"
 # conda config --set changeps1 False
 customPrompt="$(echo '(${CONDA_PREFIX})')%(?:%{%}➜ :%{%}➜ ) %{$fg[cyan]%}%c%{$reset_color%} \$(git_prompt_info)"
 PS1="${customPrompt}"
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#	export EDITOR='vim'
-# else
-#	export EDITOR='mvim'
-# fi
