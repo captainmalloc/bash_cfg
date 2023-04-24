@@ -1,3 +1,5 @@
+eval "$(brew shellenv)"
+
 # Move native PATHs to the back
 #  (Workaroung for VS-Code Terminal
 #   to avoid it putting '/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
@@ -39,7 +41,7 @@ addtool() {
 }
 
 # Add brew installed packages if needed
-for dir in `find /usr/local/opt -type l`
+for dir in `find ${HOMEBREW_PREFIX}/opt -type l`
 do
     # Keep only those with libexec
     curr_dir=${dir}/libexec

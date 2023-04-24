@@ -19,6 +19,8 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+eval "$(brew shellenv)"
+
 # User configuration
 # Move native PATHs to the back
 #  (Workaroung for VS-Code Terminal
@@ -61,7 +63,7 @@ addtool() {
 }
 
 # Add brew installed packages if needed
-for dir in `find /usr/local/opt -type l`
+for dir in `find ${HOMEBREW_PREFIX}/opt -type l`
 do
 	# Keep only those with libexec
 	curr_dir=${dir}/libexec
