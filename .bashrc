@@ -49,7 +49,7 @@ do
 done
 
 # Cargo
-addtool "${HOME}/.cargo"
+# addtool "${HOME}/.cargo"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
