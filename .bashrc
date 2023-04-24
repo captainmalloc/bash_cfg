@@ -85,5 +85,5 @@ fi
 
 # Custom Prompt
 # conda config --set changeps1 False
-customPrompt="$(echo '${CONDA_PREFIX}')\[\033[31m\]\u\[\033[39m\]@\[\033[34m\]\h\[\033[39m\][\W]$ "
+customPrompt="$(echo '(${CONDA_PREFIX})')➜ \[\033[31m\]\u\[\033[39m\]@\[\033[34m\]\h\[\033[39m\][\W]$ "
 PS1="${customPrompt}"
