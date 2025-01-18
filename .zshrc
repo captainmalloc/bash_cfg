@@ -19,7 +19,7 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-eval "$(brew shellenv)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # User configuration
 # Move native PATHs to the back

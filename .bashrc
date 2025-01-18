@@ -1,4 +1,4 @@
-eval "$(brew shellenv)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Move native PATHs to the back
 #  (Workaroung for VS-Code Terminal
